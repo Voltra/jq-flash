@@ -1,0 +1,8 @@
+@import "./colors";
+
+@mixin flashTheme($bg, $textColor, $boxShadow: $customMaterialShadowInsetNorth, $textShadow: $flashDefaultTextShadow){
+    background-color: $bg;
+    color: $textColor;
+    text-shadow: $textShadow;
+    box-shadow: $boxShadow;
+}

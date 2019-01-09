@@ -1,0 +1,23 @@
+@import "~@/colors";
+@import "~@/mixins";
+
+.flash-success{
+    @include flashTheme(
+        $flashGreen,
+        $flashGreenTextColor
+    );
+}
+
+.flash-failure{
+    @include flashTheme(
+        $flashRed,
+        $flashRedTextColor
+    );
+}
+
+.flash-info{
+    @include flashTheme(
+        $flashBlue,
+        $flashBlueTextColor
+    );
+}

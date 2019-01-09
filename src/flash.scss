@@ -1,0 +1,84 @@
+@import "./sizes";
+@import "./dyn";
+@import "./colors";
+@import "./mixins";
+
+.flash{
+    &, & > *{
+        box-sizing: border-box;
+        display: /* inline- */block;
+    }
+
+    width: $flashWidth;
+    height: $flashHeight;
+
+    position: relative;
+    top: 0;
+    left: 0;
+
+    overflow: hidden;
+
+    font-family: "Roboto", robotoMedium, roboto;
+
+    cursor: pointer;
+    transition: $flashTransition;
+
+    &-folded{
+        height: 0;
+        transition: $flashTransition;
+    }
+
+    & > *{
+        padding: $flashPadding;
+    }
+
+    &-close{
+        width: $flashCloseWidth;
+        height: $flashCloseHeight;
+        border-radius: $flashPadding;
+        float: left;
+        cursor: pointer;
+
+        padding: 0;
+
+        margin-left: $flashCloseMarginLeft;
+        margin-top: $flashCloseMarginTop;
+
+        font-size: $flashCloseFontSize;
+
+        border: none;
+        background-color: transparent;
+        color: inherit;
+    }
+
+    & p{
+        width: $flashParagraphWidth;
+        height: auto;
+        max-height: $flashParagraphMaxHeight;
+
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        color: inherit;
+    }
+
+    @include flashTheme(
+        $flashDefault,
+        $flashDefaultTextColor,
+        $customMaterialShadowInsetNorth,
+        $flashDefaultTextShadow
+    );
+
+    &-embed{
+        width: $flashEmbedWidth;
+        margin: auto; /*centered*/
+        margin-top: $flashEmbedMarginTop;
+
+        & p{
+            width: $flashEmbedPWidth;
+        }
+    }
+}
+
+@import "./themes";

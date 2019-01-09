@@ -1,0 +1,17 @@
+$flashWidth: 100vw !default;
+$flashHeight: 10vh !default;
+$flashPadding: 1vh !default;
+
+$flashCloseScaleFactor: 0.69 !default;
+$flashCloseHeight: $flashCloseScaleFactor * $flashHeight !default;
+$flashCloseWidth: $flashCloseHeight !default;
+$flashCloseMarginLeft: calc((#{$flashHeight} - #{$flashCloseWidth}) / 2) !default;
+$flashCloseMarginTop: ($flashHeight - $flashCloseHeight) / 2 !default;
+$flashCloseFontSize: 4vh !default;
+
+$flashParagraphWidth: calc(#{$flashWidth} - #{$flashCloseWidth} - (2 * #{$flashCloseMarginLeft})) !default;
+$flashParagraphMaxHeight: calc(#{$flashHeight} - #{$flashPadding}) !default;
+
+$flashEmbedWidth: 80% !default;
+$flashEmbedMarginTop: 0% !default;
+$flashEmbedPWidth: calc(100% - #{$flashCloseWidth} - (2 * #{$flashCloseMarginLeft})) !default;
