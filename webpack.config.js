@@ -36,6 +36,7 @@ const styleLoaders = [MiniCssExtractPlugin.loader, /* "style-loader", */ "css-lo
 \****************************************************************************/
 /// ENTRIES
 config.entry["flash"] = "./src/flash.js";
+config.entry["styles"] = "./src/styles.js";
 
 /// OUTPUT
 config.output = {
@@ -77,7 +78,7 @@ config.module.rules.push({
 
 /// PLUGINS
 config.plugins.push(new MiniCssExtractPlugin({
-    filename: "[name].css"
+    filename: "flash.css"
 }));
 
 

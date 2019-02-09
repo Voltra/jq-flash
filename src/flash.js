@@ -1,17 +1,4 @@
-import "@/flash.scss";
-
-(function UniversalJQueryPluginDefinition(factory){
-    if(typeof define == "function" && define.amd)
-        //AMD: register as anonymous module
-        define(["jquery"], factory);
-    else if(typeof exports == "object" && typeof module != "undefined")
-        //Node(npm)/CommonJS
-        module.exports = factory;
-    else
-        //regular use of the plugin
-        factory(jQuery);
-
-})($ => {
+const flashInstaller = ($ => {
     $(document).ready(() => {
         //////On first DOM load
         $(".flash").click(function(){
@@ -32,8 +19,9 @@ import "@/flash.scss";
      * Display a flash message
      * @param {string} type - Type of the message (eg. success, info)
      * @param {string} message - The actual body of the message
+     * @param {HTMLElement} context - Where the flash message will be prepended in
      */
-    $.flash = (type, message) => {
+    $.flash = (type, message, context=document.body) => {
         message = message ? `${message}` : "";//to string
         message.replace(/</g, "&lt;").replace(/>/g, "&gt;");//Protect again XSS
 
@@ -46,6 +34,9 @@ import "@/flash.scss";
             div.classList.add("flash-folded");
             if(type!="")
                 div.classList.add(className);
+            
+            if(context != document.body)
+                div.classList.add("flash-embed");
 
             const p = document.createElement("p");
             p.appendChild(document.createTextNode(message));
@@ -58,7 +49,7 @@ import "@/flash.scss";
             div.appendChild(button);
             div.appendChild(p);
 
-            document.querySelector("body").prepend(div);
+            context.prepend(div);
 
             //ret = Array.prototype.slice.apply(document.querySelector("body > .flash")).filter(e=>e == div);
         }else
@@ -75,13 +66,24 @@ import "@/flash.scss";
             );
         });
     };
+    
+    $.fn.flash = function(type, message){
+        return $.flash(type, message, this[0]);
+    };
 
 
     //Exposes $.flash.success, $.flash.failure, $.flash.info
     //as shorthand functions
     ["success", "failure", "info"]
-    .forEach(type => $.flash[type] = $.flash.bind($, type));
+    .forEach(type => {
+        $.flash[type] = $.flash.bind($, type)
+    });
 
     //Provides a way to get the default styles
     $.flash.default = $.flash.bind($, "");
 });
+
+if(typeof $ != "undefined" || typeof jQuery != undefined)
+    flashInstaller($ || jQuery);
+
+export default flashInstaller

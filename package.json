@@ -1,8 +1,8 @@
 {
   "name": "jq-flash",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A lightweight jQuery plugin for stylish flash messages",
-  "main": "dist/flash.js",
+  "main": "src/flash.js",
   "scripts": {
     "build": "webpack --mode=production",
     "devBuild": "webpack --mode=development",
